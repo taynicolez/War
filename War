@@ -1,6 +1,6 @@
 #Main
 #Python Two-Player game (WAR)
-#Lab 8 John & Grace 
+#Lab 8 John & Grace (sorry lol I forgot ur name feel free to add it)
 
 #This game is a terminal version of the card game "war"
 
@@ -18,10 +18,12 @@ p2 = input("Enter player 2's name: ")
 
 #create the deck
 cardDeck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13,14,14,14,14]
+print("created deck:")
+print(cardDeck)
 
 #shuffle the deck
 n=len(cardDeck)-1
-#shuffle it 3 times
+    #shuffle it 3 times
 for i in range(n):
     random_index = random.randint(0, n)
     temp = cardDeck.pop(random_index)
@@ -32,11 +34,19 @@ for i in range(n):
     random_index = random.randint(0, n)
     temp = cardDeck.pop(random_index)
     cardDeck.append(temp)
-
+    #print the shuffled deck
+print("shuffled deck: ")
 print(cardDeck)
 
 #give each player half the card deck
 p1Hand = []
 p2Hand = []
+    #alternates "handing out the cards"
+p1Hand = [int(cardDeck[i]) for i in range(len(cardDeck)) if i % 2 == 0]
+p2Hand = [int(cardDeck[i]) for i in range(len(cardDeck)) if i % 2 != 0]
 
-for i in range 
+#print each hand
+print(p1 + "'s hand: ")
+print(p1Hand)
+print(p2 + "'s hand: ")
+print(p2Hand)
