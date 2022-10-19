@@ -1,1 +1,42 @@
 Main
+#Python Two-Player game (WAR)
+#Lab 8 John & Grace 
+
+#This game is a terminal version of the card game "war"
+
+###############################
+
+#import statements
+import random
+
+
+#game start
+
+#ask for players names
+p1 = input("Enter player 1's name: ")
+p2 = input("Enter player 2's name: ")
+
+#create the deck
+cardDeck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13,14,14,14,14]
+
+#shuffle the deck
+n=len(cardDeck)-1
+#shuffle it 3 times
+for i in range(n):
+    random_index = random.randint(0, n)
+    temp = cardDeck.pop(random_index)
+    cardDeck.append(temp)
+    random_index = random.randint(0, n)
+    temp = cardDeck.pop(random_index)
+    cardDeck.append(temp)
+    random_index = random.randint(0, n)
+    temp = cardDeck.pop(random_index)
+    cardDeck.append(temp)
+
+print(cardDeck)
+
+#give each player half the card deck
+p1Hand = []
+p2Hand = []
+
+for i in range 
