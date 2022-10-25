@@ -1,6 +1,5 @@
-#Main
 #Python Two-Player game (WAR)
-#Lab 8 John, Grace, and Taylor
+#Lab 8 John & Grace 
 
 #This game is a terminal version of the card game "war"
 
@@ -8,7 +7,6 @@
 
 #import statements
 import random
-
 
 #game start
 
@@ -50,3 +48,92 @@ print(p1 + "'s hand: ")
 print(p1Hand)
 print(p2 + "'s hand: ")
 print(p2Hand)
+
+#flip a card over for each player
+
+#loop until someone loses all cards
+tieGoesTo = 1
+while (len(p1Hand) > 0 and len(p2Hand) > 0):
+    flip = input("Press 'F' to flip the cards:")
+    if flip == 'f':
+        #if cards are equal, rotate who gets the win
+        if p1Hand[0] == p2Hand[0]:
+            #if player 1's card is higher than player 2's card
+            if p1Hand[4] > p2Hand[4]:
+                #add loser's cards used to the back of winner's deck
+                p1Hand.append(p2Hand[0])
+                p1Hand.append(p2Hand[1])
+                p1Hand.append(p2Hand[2])
+                p1Hand.append(p2Hand[3])
+                #remove front cards from loser's deck
+                p2Hand.remove(p2Hand[0])
+                p2Hand.remove(p2Hand[1])
+                p2Hand.remove(p2Hand[2])
+                p2Hand.remove(p2Hand[3])
+                #add winner's cards used in the war to the back of winner's deck
+                p1Hand.append(p1Hand[0])
+                p1Hand.append(p1Hand[1])
+                p1Hand.append(p1Hand[2])
+                p1Hand.append(p1Hand[3])
+                #remove the winner's cards used for the war from the front of the deck
+                p1Hand.remove(p1Hand[0])
+                p1Hand.remove(p1Hand[1])
+                p1Hand.remove(p1Hand[2])
+                p1Hand.remove(p1Hand[3])
+                print(p1 + "'s hand: ")
+                print(p1Hand)
+                print(p2 + "'s hand: ")
+                print(p2Hand)
+            #if player 2's card is higher than player 1's card
+            elif p1Hand[4] < p2Hand[4]:
+                #add loser's cards used to the back of winner's deck
+                p2Hand.append(p1Hand[0])
+                p2Hand.append(p1Hand[1])
+                p2Hand.append(p1Hand[2])
+                p2Hand.append(p1Hand[3])
+                #remove front cards from loser's deck
+                p1Hand.remove(p1Hand[0])
+                p1Hand.remove(p1Hand[1])
+                p1Hand.remove(p1Hand[2])
+                p1Hand.remove(p1Hand[3])
+                #add winner's cards used in the war to the back of winner's deck
+                p2Hand.append(p2Hand[0])
+                p2Hand.append(p2Hand[1])
+                p2Hand.append(p2Hand[2])
+                p2Hand.append(p2Hand[3])
+                #remove the winner's cards used for the war from the front of the deck
+                p2Hand.remove(p2Hand[0])
+                p2Hand.remove(p2Hand[1])
+                p2Hand.remove(p2Hand[2])
+                p2Hand.remove(p2Hand[3])
+                print(p1 + "'s hand: ")
+                print(p1Hand)
+                print(p2 + "'s hand: ")
+                print(p2Hand)
+        #if player 1's card is higher than player 2's card
+        elif p1Hand[0] > p2Hand[0]:
+            p1Hand.append(p2Hand[0])
+            p2Hand.remove(p2Hand[0])
+            p1Hand.append(p1Hand[0])
+            p1Hand.remove(p1Hand[0])
+            print(p1 + "'s hand: ")
+            print(p1Hand)
+            print(p2 + "'s hand: ")
+            print(p2Hand)
+        #if player 2's card is higher than player 1's card
+        else:
+            p2Hand.append(p1Hand[0])
+            p1Hand.remove(p1Hand[0])
+            p2Hand.append(p2Hand[0])
+            p2Hand.remove(p2Hand[0])
+            print(p1 + "'s hand: ")
+            print(p1Hand)
+            print(p2 + "'s hand: ")
+            print(p2Hand)
+    else:
+        print("F in the chat, this man don't know the alphabet")
+if len(p1Hand) > 0:
+    print(p1 + " wins!")
+else:
+    print(p2 + " wins!")
+exit
