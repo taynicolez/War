@@ -33,7 +33,8 @@ for i in range(n):
     random_index = random.randint(0, n)
     temp = cardDeck.pop(random_index)
     cardDeck.append(temp)
-    #print the shuffled deck
+
+#print the shuffled deck
 print("shuffled deck: ")
 print(cardDeck)
 
@@ -58,13 +59,21 @@ while (len(p1Hand) > 0 and len(p2Hand) > 0):
     print("Cards left:")
     print(p1 + ": " + str(len(p1Hand)) + "   " + p2 + ": " + str(len(p2Hand)))
     flip = input("Enter 'F' to flip the cards:")
-    if flip == 'f':
+    if flip == 'f' or flip == 'F':
         print(p1 + " | " + str(p1Hand[0]) + "  " + str(p2Hand[0]) + " | " + p2)
         #if cards are equal, rotate who gets the win
         if p1Hand[0] == p2Hand[0]:
             print("WAR!!!")
+            #if someone doesnt have enough cards for war, instant lose
+            if len(p1Hand) < 4:
+                print(p1 + " has run out of cards...")
+                break         
+            elif len(p2Hand) < 4:
+                print(p2 + " has run out of cards...")
+                break
+             
             #if player 1's card is higher than player 2's card
-            if p1Hand[4] > p2Hand[4]:
+            elif p1Hand[4] > p2Hand[4]:
                 #add loser's cards used to the back of winner's deck
                 p1Hand.append(p2Hand[0])
                 p1Hand.append(p2Hand[1])
@@ -94,8 +103,9 @@ while (len(p1Hand) > 0 and len(p2Hand) > 0):
                 print(p2 + "'s hand: ")
                 print(p2Hand)
                 """
+                
             #if player 2's card is higher than player 1's card
-            elif p1Hand[4] < p2Hand[4]:
+            elif p1Hand[4] <= p2Hand[4]:
                 #add loser's cards used to the back of winner's deck
                 p2Hand.append(p1Hand[0])
                 p2Hand.append(p1Hand[1])
@@ -125,6 +135,7 @@ while (len(p1Hand) > 0 and len(p2Hand) > 0):
                 print(p2 + "'s hand: ")
                 print(p2Hand)
                 """
+                
         #if player 1's card is higher than player 2's card
         elif p1Hand[0] > p2Hand[0]:
             p1Hand.append(p2Hand[0])
@@ -155,7 +166,7 @@ while (len(p1Hand) > 0 and len(p2Hand) > 0):
             """
     else:
         print("F in the chat, this man don't know the alphabet")
-if len(p1Hand) > 0:
+if len(p1Hand) > len(p2Hand):
     print(p1 + " wins the game!")
 else:
     print(p2 + " wins the game!")
