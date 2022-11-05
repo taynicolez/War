@@ -2,7 +2,8 @@
 #Lab 8 John, Grace, and Taylor 
 
 #This game is a terminal version of the card game "war"
-#suggestions: case sensitive, GUI, description of game, theme music (game of thrones preferred), add a quit option.
+
+#suggestions: case sensitive (done), GUI, description of game (done), theme music (game of thrones preferred), add a quit option.
 
 ###############################
 
@@ -11,6 +12,15 @@ import random
 
 #game start
 
+#give a description of how the game works
+print("Welcome to 'War - The Card Game'\n\nWar is a very simple card game for two players. Much like real war, it's incredibly long and pointless...\n")
+print("Rules:")
+print("1. Each player is dealt half the deck (26 cards), face down.")
+print("2. Both players turn their top card face up at the same time. The person with the higher card wins that draw, and takes both the cards.")
+print("3. If both players draw a card of the same rank, e.g. they both draw 8s, then there's a war. The face up cards are left on the table and each player puts three cards face down on the table, and then puts one card face up. The face up card determines who wins the war and gets all 10 cards that are on the table at this point.")
+print("4. The first player to lose all their cards loses the game.")
+print("5. If a player finishes their cards during a war without having enough cards to finish the war then he loses immediately.\n")
+print("PRESS 'Q' TO QUIT AT ANY TIME DURING THE GAME\n")
 #ask for players names
 p1 = input("Enter player 1's name: ")
 p2 = input("Enter player 2's name: ")
@@ -54,11 +64,15 @@ print(p2Hand)
 #flip a card over for each player
 
 #loop until someone loses all cards
-tieGoesTo = 1
-while (len(p1Hand) > 0 and len(p2Hand) > 0):
+q = False #quit option
+while (len(p1Hand) > 0 and len(p2Hand) > 0 and (q == False)):
     print("Cards left:")
     print(p1 + ": " + str(len(p1Hand)) + "   " + p2 + ": " + str(len(p2Hand)))
     flip = input("Enter 'F' to flip the cards:")
+    #checks if player entered q to quit
+    if flip == 'q' or flip == 'Q':
+        q = True
+        break
     if flip == 'f' or flip == 'F':
         print(p1 + " | " + str(p1Hand[0]) + "  " + str(p2Hand[0]) + " | " + p2)
         #if cards are equal, rotate who gets the win
@@ -79,30 +93,34 @@ while (len(p1Hand) > 0 and len(p2Hand) > 0):
                 p1Hand.append(p2Hand[1])
                 p1Hand.append(p2Hand[2])
                 p1Hand.append(p2Hand[3])
+                p1Hand.append(p2Hand[4])
                 #remove front cards from loser's deck
                 p2Hand.remove(p2Hand[0])
                 p2Hand.remove(p2Hand[1])
                 p2Hand.remove(p2Hand[2])
                 p2Hand.remove(p2Hand[3])
+                p2Hand.remove(p2Hand[4])
                 #add winner's cards used in the war to the back of winner's deck
                 p1Hand.append(p1Hand[0])
                 p1Hand.append(p1Hand[1])
                 p1Hand.append(p1Hand[2])
                 p1Hand.append(p1Hand[3])
+                p1Hand.append(p1Hand[4])
                 #remove the winner's cards used for the war from the front of the deck
                 p1Hand.remove(p1Hand[0])
                 p1Hand.remove(p1Hand[1])
                 p1Hand.remove(p1Hand[2])
                 p1Hand.remove(p1Hand[3])
+                p1Hand.remove(p1Hand[4])
 
                 print(p1 + " wins the war.")
 
-                """
+                
                 print(p1 + "'s hand: ")
                 print(p1Hand)
                 print(p2 + "'s hand: ")
                 print(p2Hand)
-                """
+                
                 
             #if player 2's card is higher than player 1's card
             elif p1Hand[4] <= p2Hand[4]:
@@ -111,30 +129,34 @@ while (len(p1Hand) > 0 and len(p2Hand) > 0):
                 p2Hand.append(p1Hand[1])
                 p2Hand.append(p1Hand[2])
                 p2Hand.append(p1Hand[3])
+                p2Hand.append(p1Hand[4])
                 #remove front cards from loser's deck
                 p1Hand.remove(p1Hand[0])
                 p1Hand.remove(p1Hand[1])
                 p1Hand.remove(p1Hand[2])
                 p1Hand.remove(p1Hand[3])
+                p1Hand.remove(p1Hand[4])
                 #add winner's cards used in the war to the back of winner's deck
                 p2Hand.append(p2Hand[0])
                 p2Hand.append(p2Hand[1])
                 p2Hand.append(p2Hand[2])
                 p2Hand.append(p2Hand[3])
+                p2Hand.append(p2Hand[4])
                 #remove the winner's cards used for the war from the front of the deck
                 p2Hand.remove(p2Hand[0])
                 p2Hand.remove(p2Hand[1])
                 p2Hand.remove(p2Hand[2])
                 p2Hand.remove(p2Hand[3])
+                p2Hand.remove(p2Hand[4])
 
                 print(p2 + " wins the war.")
 
-                """
+                
                 print(p1 + "'s hand: ")
                 print(p1Hand)
                 print(p2 + "'s hand: ")
                 print(p2Hand)
-                """
+                
                 
         #if player 1's card is higher than player 2's card
         elif p1Hand[0] > p2Hand[0]:
@@ -150,6 +172,7 @@ while (len(p1Hand) > 0 and len(p2Hand) > 0):
             print(p2 + "'s hand: ")
             print(p2Hand)
             """
+            
         #if player 2's card is higher than player 1's card
         else:
             p2Hand.append(p1Hand[0])
@@ -167,7 +190,7 @@ while (len(p1Hand) > 0 and len(p2Hand) > 0):
     else:
         print("F in the chat, this man don't know the alphabet")
 if len(p1Hand) > len(p2Hand):
-    print(p1 + " wins the game!")
+    print("\n" + p1 + " wins the game!")
 else:
-    print(p2 + " wins the game!")
+    print("\n" + p2 + " wins the game!")
 exit
